@@ -1,0 +1,14 @@
+{
+  "name": "TradeoffAnalyticsV2NodejsStarterApp",
+  "version": "0.1.3",
+  "description": "A sample nodejs app for Bluemix that use the Tradeoff Analytics service",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "~4.13.4",
+    "watson-developer-cloud": "^1.3.0"
+  },
+  "repository": {}
+}
