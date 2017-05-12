@@ -14,30 +14,14 @@
 
 import os
 from flask import Flask, jsonify
+import request_json
 
 app = Flask(__name__)
+request = request_json.request_json()
 
-@app.route('/')
-def Welcome():
-    return app.send_static_file('index.html')
-
-@app.route('/myapp')
-def WelcomeToMyapp():
-    return 'Welcome again to my app running on Bluemix!'
-
-@app.route('/api/people')
-def GetPeople():
-    list = [
-        {'name': 'John', 'age': 28},
-        {'name': 'Bill', 'val': 26}
-    ]
-    return jsonify(results=list)
-
-@app.route('/api/people/<name>')
-def SayHello(name):
-    message = {
-        'message': 'Hello ' + name
-    }
+@app.route('/api/crops/<state>/<county>')
+def SayHello(state, county):
+    message = request.analyze(state.upper(), county.upper())
     return jsonify(results=message)
 
 port = os.getenv('PORT', '5000')

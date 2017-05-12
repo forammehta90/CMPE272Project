@@ -29,5 +29,5 @@ class request_json(object):
             options.append(self.cli.analyze(temp, st, ct, crop.upper()))
     
         tempjson.update({'options': options})
-        print json.dumps(tempjson)
+        print tempjson
 
