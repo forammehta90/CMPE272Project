@@ -15,6 +15,7 @@
 import os
 from flask import Flask, jsonify
 import request_json
+import json
 
 app = Flask(__name__)
 request = request_json.request_json()
@@ -22,7 +23,7 @@ request = request_json.request_json()
 @app.route('/api/crops/<state>/<county>')
 def SayHello(state, county):
     message = request.analyze(state.upper(), county.upper())
-    return jsonify(results=message)
+    return jsonify(results = message)
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":

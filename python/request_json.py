@@ -13,7 +13,6 @@ class request_json(object):
         
 
     def analyze(self,st,ct):
-        
         temp=self.df.groupby(['state', 'county']).get_group((st,ct))
         crops = temp.commodity.unique()
         tempjson = {}
@@ -27,7 +26,6 @@ class request_json(object):
         tempjson.update({'columns': columns})
         for crop in crops:
             options.append(self.cli.analyze(temp, st, ct, crop.upper()))
-    
         tempjson.update({'options': options})
-        print tempjson
+        return json.dumps(tempjson)
 
