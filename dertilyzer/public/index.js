@@ -24,19 +24,10 @@ taClient.start(function(){
         url: '/login2',
         method: 'POST',
         dataType: 'json'
-    }).done(function(err, data) {
-        // The JSON sent back from the server will contain a success message
-        console.log("index.js", data);
+    }).done(function(data, err) {
+    	console.log(err);
         taClient.show(data);
-    }).fail(function(error) {
-        //alert(JSON.stringify(error));
-    });
-  // Upon success, load the problem json...
-  /*$.getJSON('data.json', function(data) {
-    // ...and pass it to the client
-	  console.log('data', data);
-    taClient.show(data);
-  });*/
+    })
     
   // subscribe to events
   taClient.subscribe('onError', function (error) {

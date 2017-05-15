@@ -25,7 +25,7 @@ video {
     margin-bottom: 40px;
 }
 
-input:focus, textarea:focus {
+select:focus, input:focus, textarea:focus {
     outline: 0;
     border-color: #ff6347;
 }
@@ -45,7 +45,7 @@ input, textarea, select {
     background-image: none;
     border: 1px solid #a0b3b0;
     color: #a0b3b0;
-    border-radius: 0;
+    border-radius: 3px;
     -webkit-transition: border-color .25s ease, box-shadow .25s ease;
     transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -94,6 +94,7 @@ input, textarea, select {
   width: 33%;
   margin:2rem;
   float: right;
+  border-radius: 5px;
   font-size: 1.2rem;
 }
 h1 {

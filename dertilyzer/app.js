@@ -37,14 +37,18 @@ app.get('/main', function(req,res) {
 	});
 
 	app.post('/login', function(req, res) {
-		http.get("http://cmpe272-python.mybluemix.net/api/crops/ARIZONA/MARICOPA", function(res) {
+		var state = req.body.inputUsername;
+		var county = req.body.inputPassword;
+		console.log('req params', state, county);
+		var url = "http://cmpe272-python.mybluemix.net/api/crops/" + state + "/" + county;
+		http.get(url, function(res) {
 		  var body = '';
 		  res.on('data', function(data){
 			  body += data;
 		  	})
 		res.on('end', function(){
 	        var response = JSON.parse(body);
-			//fs.writeFile('./public/data.json', response.results, function (err) {});
+			fs.writeFile('./public/data.json', response.results, function (err) {});
 			})
 		  });
 		  res.redirect('/trade');
@@ -54,14 +58,12 @@ app.get('/main', function(req,res) {
 		fs.readFile('./public/data.json', function (err, data) {
 			var body = '';
 			req.on('data', function(data){
-				console.log('data on');
 				  body += data;
 			  	})
 			 req.on('end', function(){
-				 console.log('end', JSON.parse(data));
 				 res.setHeader("Content-Type", "text/json");
 				 res.setHeader("Access-Control-Allow-Origin", "*");
-				 res.end(data);
+				 res.end(data.toString());
 			  	})
 		});
 	});
