@@ -1,0 +1,92 @@
+data = '{
+	"subject": "Plantaplan",
+	"columns": [
+		{
+			"key": "yield",
+			"full_name": "Yield",
+			"type": "numeric",
+			"goal": "max"
+		},
+		{
+			"key": "production",
+			"full_name": "Production",
+			"type": "numeric",
+			"goal": "max"
+		},
+		{
+			"key": "acres_harvested",
+			"full_name": "Acres Harvested",
+			"type": "numeric",
+			"goal": "max"
+		},
+		{
+			"key": "season",
+			"full_name": "Season",
+			"type": "categorical",
+			"range": ["Spring", "Summer", "Fall", "Winter"]
+		},
+		{
+			"key": "acres_planted",
+			"full_name": "Acres Planted",
+			"type": "numeric",
+			"goal": "max"
+		}
+	],
+	"options": [{
+			"key": "1",
+			"name": "Barley",
+			"values": {
+				"acres_harvested": 4800,
+				"acres_planted": 5100,
+				"season": "Spring",
+				"production": 610000,
+				"yield": 127
+			}
+		},
+		{
+			"key": "2",
+			"name": "Corn",
+			"values": {
+				"acres_harvested": 48000,
+				"acres_planted": 51000,
+				"season": "Spring",
+				"production": 61000,
+				"yield": 1270
+			}
+		},
+		{
+			"key": "3",
+			"name": "Wheat",
+			"values": {
+				"acres_harvested": 46510,
+				"acres_planted": 12,
+				"season": "Winter",
+				"production": 72,
+				"yield": 512
+			}
+		},
+		{
+			"key": "4",
+			"name": "Rye",
+			"values": {
+				"acres_harvested": 65132,
+				"acres_planted": 10,
+				"season": "Fall",
+				"production": 8132,
+				"yield": 244
+			}
+		},
+		{
+			"key": "5",
+			"name": "Maize",
+			"values": {
+				"acres_harvested": 410022,
+				"acres_planted": 561020,
+				"season": "Summer",
+				"production": 150125,
+				"yield": 52
+			}
+		}
+
+	]
+}⁠⁠⁠⁠';

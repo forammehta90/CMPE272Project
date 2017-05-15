@@ -17,21 +17,55 @@
 'use strict';
 
 var http = require('http');
+var fs = require('fs');
+var bodyParser = require("body-parser");
 var express = require('express'),
     tradeoffAnalyticsConfig = require('./tradeoff-analytics-config');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use('/',express.static(__dirname + '/public'));
 
-http.get("http://localhost:5000/hello", function(res) {
-	  var body = ''; // Will contain the final response
-	  // Received data is a buffer.
-	  // Adding it to our body
-	  res.on('data', function(data){
-		  console.log('hey', data);
-		  body += data;
-	  	})
-	  });
+app.get('/trade', function(req,res) {
+	  res.sendfile(__dirname + '/public/index.html');
+	});
+
+app.get('/main', function(req,res) {
+	  res.sendfile(__dirname + '/public/demo.html');
+	});
+
+	app.post('/login', function(req, res) {
+		http.get("http://cmpe272-python.mybluemix.net/api/crops/ARIZONA/MARICOPA", function(res) {
+		  var body = '';
+		  res.on('data', function(data){
+			  body += data;
+		  	})
+		res.on('end', function(){
+	        var response = JSON.parse(body);
+			//fs.writeFile('./public/data.json', response.results, function (err) {});
+			})
+		  });
+		  res.redirect('/trade');
+	});
+	
+	app.post('/login2', function(req, res) {
+		fs.readFile('./public/data.json', function (err, data) {
+			var body = '';
+			req.on('data', function(data){
+				console.log('data on');
+				  body += data;
+			  	})
+			 req.on('end', function(){
+				 console.log('end', JSON.parse(data));
+				 res.setHeader("Content-Type", "text/json");
+				 res.setHeader("Access-Control-Allow-Origin", "*");
+				 res.end(data);
+			  	})
+		});
+	});
+
 // For local development, copy your service instance credentials here, otherwise you may ommit this parameter
 var serviceCredentials = {
   username: 'bec9820d-4d36-4289-98bd-fc0f67dab9d4',
