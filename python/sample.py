@@ -9,10 +9,10 @@ class sample(object):
         self.cli = json_maker.json_maker()
 
     def analyze(self, temp, stateName, countyName, cropName):
-        acres_harvested = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & ('ACRES HARVESTED' in str(temp.data_item))]
-        acres_planted = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & ('ACRES PLANTED' in str(temp.data_item))]
-        production = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & ('PRODUCTION, MEASURED IN BU' in str( temp.data_item))]
-        yield_measured = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & ('YIELD, MEASURED IN BU / ACRE' in str(temp.data_item))]
+        acres_harvested = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & temp['data_item'].str.contains('ACRES HARVESTED')]
+        acres_planted = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & temp['data_item'].str.contains('ACRES PLANTED')]
+        production = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & temp['data_item'].str.contains('PRODUCTION')]
+        yield_measured = temp[ (temp.commodity == cropName) & (temp.state == stateName) & (temp.county == countyName) & temp['data_item'].str.contains('YIELD')]
         list = {}
         list.update({'acres_harvested': acres_harvested.value.mean()})
         list.update({'acres_planted': acres_planted.value.mean()})
