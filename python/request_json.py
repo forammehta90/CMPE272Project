@@ -9,6 +9,7 @@ class request_json(object):
         self.cli = sample.sample()
         self.df = pd.read_csv('Texas.csv')
         self.df.columns = [c.lower().replace(' ', '_') for c in self.df.columns]
+        self.df['value'] = self.df['value'].str.replace(",","")
         self.df['value'] = self.df['value'].apply(pd.to_numeric, errors='coerce')
         
 
